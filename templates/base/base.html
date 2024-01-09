@@ -1,0 +1,30 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    {% include "base/partials/head.html" %}
+    
+    <title>{% block title %}{% endblock title %} Blog</title>
+</head>
+<body>
+
+    <header>
+        <h1>Meu Blog</h1>
+        <nav>
+            <a href="#">Início</a>
+            <a href="#">Categorias</a>
+            <a href="#">Sobre</a>
+            <a href="#">Contato</a>
+          </nav>
+    </header>
+
+    <main>
+        {% block content %}{% endblock content %}
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Meu Blog. Todos os direitos reservados.</p>
+    </footer>
+
+</body>
+</html>
