@@ -41,9 +41,9 @@ Bem-vindo, agente da Fundação SCP, ao tutorial que o guiará pela criação de
         
 ## Passo 4: Instalação das Dependências
   1. Com o ambiente virtual ativado, instale as dependências do projeto:
-    ```bash
-      pip install -r requirements.txt
-    ```
+  ```bash
+    pip install -r requirements.txt
+  ```
 
 ## Passo 5: Migrações e Criação do Banco de Dados
   1. Execute as migrações para criar o banco de dados:
