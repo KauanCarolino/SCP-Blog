@@ -41,7 +41,7 @@ Bem-vindo, agente da Fundação SCP, ao tutorial que o guiará pela criação de
         
 ## Passo 4: Instalação das Dependências
   1. Com o ambiente virtual ativado, instale as dependências do projeto:
-    ```
+    ```bash
       pip install -r requirements.txt
     ```
 
