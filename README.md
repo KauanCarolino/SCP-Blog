@@ -23,11 +23,11 @@ Os bardos do insondável têm a tarefa de criar histórias intrigantes, relatór
 
 ## Instruções para Conter o Inconcebível
 Para iniciar sua missão na Fundação SCP, siga estas instruções meticulosas:
-    1. Faça um fork deste repositório para criar sua própria instância do Projeto SCP.
-    2. Clone seu fork para sua estação de trabalho, onde os segredos serão revelados.
-    3. Explore as diferentes branches para encontrar áreas onde suas habilidades são necessárias.
-    4. Compartilhe suas descobertas através de pull requests, permitindo que outros agentes vejam e contribuam para a contenção. 
-    5.  Veja o tutorial neste link [Tutorial para contibuir](TUTORIAL.md)
+1. Faça um fork deste repositório para criar sua própria instância do Projeto SCP.
+2. Clone seu fork para sua estação de trabalho, onde os segredos serão revelados.
+3. Explore as diferentes branches para encontrar áreas onde suas habilidades são necessárias.
+4. Compartilhe suas descobertas através de pull requests, permitindo que outros agentes vejam e contribuam para a contenção. 
+5.  Veja o tutorial neste link [Tutorial para contibuir](TUTORIAL.md)
 
 ## Agradecimentos Especiais
 Agradecemos a todos os agentes que contribuíram para este projeto extraordinário. Juntos, construiremos um RPG SCP que desafia as fronteiras da realidade e leva os jogadores a um mundo de mistério e horror insondável.
