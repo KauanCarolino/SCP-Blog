@@ -14,10 +14,10 @@ class Publication(models.Model):
     item_number = models.CharField(max_length=50)
     name_SCP = models.CharField(max_length=50)
     image = models.ImageField(upload_to='scpImage/cover/%Y/%m/%d/', blank=True, default='')
-    resume = models.CharField(max_length=50)
+    resume = models.CharField(max_length=100)
     special_containment_procedures = models.TextField()
     description = models.TextField()
-    addendum =  models.TextField()
+    addendum =  models.TextField(null=True, blank=True)
     #administration
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)

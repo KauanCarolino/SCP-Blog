@@ -4,18 +4,72 @@
 
 {% block content %}
 
+<div class="main-content main-content-list container">
 
-  <article>
-    <h2>{Título do Artigo 1}</h2>
-    <p>Conteúdo do artigo 1...</p>
-    <a href="#">Leia mais</a>
-  </article>
+  {% for publicacao in BlogList %}
+    <div class="blog blog-list-item">
+      {% if publicacao.image %}
+          <div class="blog-cover">
+              <a href="">
+                  <img src="{{ publicacao.image.url }}" alt="Temporário">
+              </a>
+          </div>
+      {% endif %}
+      <div class="blog-title-container">
+          <h2 class="blog-title">
+              <a href="">
+                  {{ publicacao.title }}
+              </a>
+          </h2>
+      </div>
 
-  <article>
-    <h2>Título do Artigo 2</h2>
-    <p>Conteúdo do artigo 2...</p>
-    <a href="#">Leia mais</a>
-  </article>
+      <div class="blog-author">
+
+
+          <span class="blog-author-item">
+              <i class="fas fa-user"></i>
+              {% if publicacao.author is not None %}
+                  {% if publicacao.author.first_name %}
+                      {{ publicacao.author.first_name }} {{ publicacao.author.last_name }}
+                  {% else %}
+                      {{ publicacao.author.username }}
+                  {% endif %}
+              {% else %}
+                  Desconhecido
+              {% endif %}
+          </span>
+
+          <span class="blog-author-item">
+              <i class="fas fa-calendar-alt"></i>
+              {{ publicacao.created_at|date:"d/m/Y" }} às {{ publicacao.created_at|date:"H:i:s" }}
+          </span>
+
+          {% if publicacao.category is not None %}
+          <span class="blog-author-item">
+              <a href="">
+                  <i class="fas fa-layer-group"></i>
+                  <span>{{ publicacao.category.name }}</span>
+              </a>
+          </span>
+          {% endif %}
+      </div>
+
+      <div class="blog-content">
+          <p>{{ publicacao.resume }}</p>
+      </div>
+
+
+      <footer class="blog-footer">
+          <a class="blog-read-more button button-dark button-full-width" 
+            href="">
+              <i class="fas fa-eye"></i>
+              <span>ver mais...</span>
+          </a>
+      </footer>
+    </div>
+
+  {% endfor %}
+</div>
 
 
 {% endblock content %}
