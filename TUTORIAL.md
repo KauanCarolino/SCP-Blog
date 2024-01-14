@@ -46,7 +46,11 @@ Bem-vindo, agente da Fundação SCP, ao tutorial que o guiará pela criação de
   ```
 
 ## Passo 5: Migrações e Criação do Banco de Dados
-  1. Execute as migrações para criar o banco de dados:
+  1. Execute o makemigration para criar as models do seu banco:
+  ```
+    python manage.py makemigration blog
+  ```
+  2. Execute as migrações para criar o banco de dados:
   ```
     python manage.py migrate
   ```
