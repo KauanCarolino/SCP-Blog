@@ -8,20 +8,17 @@
 </head>
 <body class="text-2xl">
 
-    <header class="bg-gray-800 text-white py-4 text-center">
-        <h1 class="mb-4" >SCP: Contos do Insondável</h1>
-        <nav>
-            <a href="#" class="mx-2">Início</a>
-            <a href="#" class="mx-2">Categorias</a>
-            <a href="#" class="mx-2">Sobre</a>
-            <a href="#" class="mx-2">Contato</a>
-          </nav>
-    </header>
+    {% include "base/partials/header.html" %}
 
     <main class="grid grid-cols-1 sm:grid-cols-auto-fit sm:grid-cols-minmax-340px gap-8">
         {% block content %}{% endblock content %}
     </main>
 
+    <!-- SCRIPTS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
+
+
+    
     <footer class="bg-gray-800 text-white py-4 text-center">
         <p>&copy; 2024 Meu Blog. Todos os direitos reservados.</p>
     </footer>

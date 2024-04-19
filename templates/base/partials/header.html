@@ -1,0 +1,46 @@
+{% load static %}
+
+<header class="bg-gray-800 p-4 text-white">
+    <div class="container mx-auto flex justify-between items-center">
+        <div class="flex items-center">
+            <a href="{% url "blog:home" %}">
+                <img src="{% static "blog/img/scplogo-removebg-preview.png" %}" alt="Logo" 
+                    class="h-16 w-auto">
+            </a>
+            {% comment %} <h1 class="text-xl font-bold ml-2"></h1> {% endcomment %}
+        </div>
+        <nav>
+            <ul class="flex gap-4 text-white">
+                <li><a href="{% url "blog:home" %}" class="hover:text-blue-400">Inicial</a></li>
+                <li class="relative">
+                    <a href="#" id="dropdownNavbarLink" data-dropdown-toggle="dropdownNavbar" 
+                       class="flex items-center justify-between hover:text-blue-400 ">Categorias 
+                        <i class="ml-1 fa-solid fa-chevron-down"></i>
+                    </a>
+                    <div id="dropdownNavbar" class="z-10 hidden absolute top-full right-0 mt-2 font-normal bg-gray-800 divide-y divide-gray-100 rounded-lg shadow w-44">
+                        <ul class="py-2 text-sm text-white" aria-labelledby="dropdownLargeButton">
+                            <li>
+                                <a href="#" class="block px-4 py-2 hover:bg-gray-700 ">SCPs</a>
+                            </li>
+                            <li>
+                                <a href="#" class="block px-4 py-2 hover:bg-gray-700 ">Contos</a>
+                            </li>
+                            <li>
+                                <a href="#" class="block px-4 py-2 hover:bg-gray-700 ">Artes</a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                
+                <li><a href="#" class="hover:text-blue-400">Sobre</a></li>
+                <li><a href="#" class="hover:text-blue-400">Contato</a></li>
+            </ul>
+        </nav>
+        <div class="flex items-center">
+            <input type="text" placeholder="Pesquisar" class="px-4 py-2 h-12 text-black text-lg rounded-l-md focus:outline-none focus:ring focus:ring-blue-400">
+            <button class="bg-blue-500 hover:bg-blue-600 px-4 py-2 rounded-r-md focus:outline-none focus:ring focus:ring-blue-400">
+                <i class="h-6 w-6 text-white fa-solid fa-magnifying-glass"></i>
+            </button>
+        </div>
+    </div>
+</header>
