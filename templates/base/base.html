@@ -6,23 +6,23 @@
     
     <title>{% block title %}{% endblock title %} Blog</title>
 </head>
-<body>
+<body class="text-2xl">
 
-    <header>
-        <h1>Meu Blog</h1>
+    <header class="bg-gray-800 text-white py-4 text-center">
+        <h1 class="mb-4" >SCP: Contos do Insondável</h1>
         <nav>
-            <a href="#">Início</a>
-            <a href="#">Categorias</a>
-            <a href="#">Sobre</a>
-            <a href="#">Contato</a>
+            <a href="#" class="mx-2">Início</a>
+            <a href="#" class="mx-2">Categorias</a>
+            <a href="#" class="mx-2">Sobre</a>
+            <a href="#" class="mx-2">Contato</a>
           </nav>
     </header>
 
-    <main>
+    <main class="grid grid-cols-1 sm:grid-cols-auto-fit sm:grid-cols-minmax-340px gap-8">
         {% block content %}{% endblock content %}
     </main>
 
-    <footer>
+    <footer class="bg-gray-800 text-white py-4 text-center">
         <p>&copy; 2024 Meu Blog. Todos os direitos reservados.</p>
     </footer>
 

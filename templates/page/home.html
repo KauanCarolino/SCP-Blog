@@ -1,0 +1,71 @@
+{% extends "base/base.html" %}
+{% load static %}
+
+<title> {% block title %} Home {% endblock title %} </title>
+
+{% block content %}
+
+<div class="pt-8 grid xl:grid-cols-3 lg:grid-cols-2 gap-8 mx-12 mb-12">
+
+    {% for publicacao in blogList %}
+        <div class=" bg-white shadow-lg transition-all duration-300 ease-in-out hover:scale-105 hover:shadow-xl rounded-md overflow-hidden">
+            {% if publicacao.image %}
+                <div class="">
+                    <a href="{% url "blog:detail_publication" publicacao.pk %}">
+                        <img src="{{ publicacao.image.url }}" alt="Image: {{publicacao.title}}" class="w-full h-60 object-cover">
+                    </a>
+                </div>
+            {% else %}
+                <div class="">
+                    <a href="{% url "blog:detail_publication" publicacao.pk %}">
+                        <img src="{% static "blog/img/scp-image-default.jpg" %}" alt="Image: {{publicacao.title}}" class="w-full h-60 object-cover">
+                    </a>
+                </div>
+            {% endif %}
+            <div class="px-8 py-4">
+                <h2 class="blog-title">
+                    <a href="{% url "blog:detail_publication" publicacao.pk %}" class="text-primary-dark hover:text-primary">
+                        {{ publicacao.title }}
+                    </a>
+                </h2>
+            </div>
+
+            <div class="px-8">
+                <span class="text-[#959595] italic mr-4 text-2xl">
+                    <i class="fas fa-user"></i>
+                    {% if publicacao.author is not None %}
+                        {% if publicacao.author.first_name %}
+                            {{ publicacao.author.first_name }} {{ publicacao.author.last_name }}
+                        {% else %}
+                            {{ publicacao.author.username }}
+                        {% endif %}
+                    {% else %}
+                        Desconhecido
+                    {% endif %}
+                </span>
+
+                <span class="text-[#959595] italic mr-4 text-2xl">
+                    <i class="fas fa-calendar-alt"></i>
+                    {{ publicacao.created_at|date:"d/m/Y" }}
+                </span>
+
+                {% if publicacao.category is not None %}
+                    <span class="text-[#269fe6] hover:text-[#2086c2] ">
+                        <a href="">
+                            <i class="fas fa-layer-group"></i>
+                            <span>{{ publicacao.category.name }}</span>
+                        </a>
+                    </span>
+                {% endif %}
+            </div>
+
+            <div class="px-8 py-4">
+                <p>{{ publicacao.resume }}</p>
+            </div>
+        </div>
+    {% empty %}
+        Não foram encontradas publicações
+    {% endfor %}
+</div>
+
+{% endblock content %}
