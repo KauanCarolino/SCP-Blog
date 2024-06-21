@@ -8,11 +8,23 @@ class Category(models.Model):
     def __str__(self):
         return self.name
 
+NOT_SPECIFIED = 'NOT_SPECIFIED'
+SAFE = 'SAFE'
+EUCLID = 'EUCLID'
+KETER = 'KETER'
+
+OBJECT_CLASS_CHOICES = (
+    (NOT_SPECIFIED, "Não Especificado"),
+    (SAFE, "Seguro"),
+    (EUCLID, "Euclideo"),
+    (KETER, "Keter"),
+)
 
 class Publication(models.Model):
     title = models.CharField(max_length=50)
     item_number = models.CharField(max_length=50)
     name_SCP = models.CharField(max_length=50)
+    object_class = models.CharField(max_length=13, choices=OBJECT_CLASS_CHOICES, default=NOT_SPECIFIED)
     image = models.ImageField(upload_to='scpImage/cover/%Y/%m/%d/', blank=True, default='')
     resume = models.CharField(max_length=100)
     special_containment_procedures = models.TextField()
