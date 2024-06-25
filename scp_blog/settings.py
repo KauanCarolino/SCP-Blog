@@ -81,7 +81,7 @@ WSGI_APPLICATION = 'scp_blog.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': DATABASE_ENGINE,
+        'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
