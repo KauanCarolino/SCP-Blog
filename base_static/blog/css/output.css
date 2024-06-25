@@ -1139,32 +1139,16 @@ input:checked + .toggle-bg {
   order: 3;
 }
 
-.order-none {
-  order: 0;
-}
-
-.order-4 {
-  order: 4;
-}
-
 .order-5 {
   order: 5;
 }
 
-.order-6 {
-  order: 6;
+.order-none {
+  order: 0;
 }
 
 .col-span-2 {
   grid-column: span 2 / span 2;
-}
-
-.float-right {
-  float: right;
-}
-
-.float-left {
-  float: left;
 }
 
 .mx-12 {
@@ -1197,20 +1181,8 @@ input:checked + .toggle-bg {
   margin-right: 1rem;
 }
 
-.mr-5 {
-  margin-right: 1.25rem;
-}
-
 .mt-2 {
   margin-top: 0.5rem;
-}
-
-.mb-4 {
-  margin-bottom: 1rem;
-}
-
-.mr-40 {
-  margin-right: 10rem;
 }
 
 .block {
@@ -1269,16 +1241,16 @@ input:checked + .toggle-bg {
   height: auto;
 }
 
-.h-\[100px\] {
-  height: 100px;
-}
-
-.h-\[500px\] {
-  height: 500px;
-}
-
 .h-full {
   height: 100%;
+}
+
+.h-14 {
+  height: 3.5rem;
+}
+
+.h-11 {
+  height: 2.75rem;
 }
 
 .w-1\/2 {
@@ -1301,6 +1273,10 @@ input:checked + .toggle-bg {
   width: 16rem;
 }
 
+.w-\[450px\] {
+  width: 450px;
+}
+
 .w-auto {
   width: auto;
 }
@@ -1309,60 +1285,8 @@ input:checked + .toggle-bg {
   width: 100%;
 }
 
-.w-0 {
-  width: 0px;
-}
-
-.w-\[1000px\] {
-  width: 1000px;
-}
-
-.w-\[500px\] {
-  width: 500px;
-}
-
-.w-\[200px\] {
-  width: 200px;
-}
-
-.w-\[300px\] {
-  width: 300px;
-}
-
-.w-\[350px\] {
-  width: 350px;
-}
-
-.w-\[450px\] {
-  width: 450px;
-}
-
-.min-w-\[500px\] {
-  min-width: 500px;
-}
-
 .max-w-full {
   max-width: 100%;
-}
-
-.max-w-xs {
-  max-width: 20rem;
-}
-
-.max-w-0 {
-  max-width: 0px;
-}
-
-.max-w-52 {
-  max-width: 13rem;
-}
-
-.max-w-96 {
-  max-width: 24rem;
-}
-
-.max-w-\[500px\] {
-  max-width: 500px;
 }
 
 .flex-1 {
@@ -2037,12 +1961,6 @@ input:checked + .toggle-bg {
   color: rgb(255 255 255 / var(--tw-text-opacity));
 }
 
-@media (min-width: 640px) {
-  .sm\:max-w-none {
-    max-width: none;
-  }
-}
-
 @media (min-width: 768px) {
   .md\:h-12 {
     height: 3rem;
@@ -2050,6 +1968,10 @@ input:checked + .toggle-bg {
 
   .md\:h-16 {
     height: 4rem;
+  }
+
+  .md\:h-11 {
+    height: 2.75rem;
   }
 
   .md\:w-auto {
@@ -2075,28 +1997,12 @@ input:checked + .toggle-bg {
     order: 0;
   }
 
-  .lg\:order-1 {
-    order: 1;
-  }
-
-  .lg\:order-2 {
-    order: 2;
-  }
-
   .lg\:col-span-1 {
     grid-column: span 1 / span 1;
   }
 
   .lg\:mx-0 {
     margin-left: 0px;
-    margin-right: 0px;
-  }
-
-  .lg\:mb-0 {
-    margin-bottom: 0px;
-  }
-
-  .lg\:mr-0 {
     margin-right: 0px;
   }
 

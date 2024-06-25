@@ -38,12 +38,6 @@
             </ul>
         </nav>
 
-        <div class="flex lg:w-auto w-full">
-            <input type="text" placeholder="Pesquisar" 
-                   class="px-4 py-2 h-10 md:h-12 w-full text-black text-sm md:text-lg rounded-l-md focus:outline-none focus:ring focus:ring-blue-400">
-            <button class="bg-blue-500 hover:bg-blue-600 px-4 py-2 rounded-r-md focus:outline-none focus:ring focus:ring-blue-400">
-                <i class="h-6 w-6 text-white fa-solid fa-magnifying-glass"></i>
-            </button>
-        </div>
+        {% include "base/partials/search_pubblication.html" %}
     </div>
 </header>

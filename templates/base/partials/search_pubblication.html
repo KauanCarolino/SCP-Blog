@@ -1,0 +1,12 @@
+{% load static widget_tweaks %}
+
+<form class="flex lg:w-auto w-full" method="get">
+    {% comment %} <input type="text" placeholder="Pesquisar" 
+           class="px-4 py-2 h-12 md:h-12 w-full text-black text-sm md:text-lg rounded-l-md focus:outline-none focus:ring focus:ring-blue-400"> {% endcomment %}
+    {% render_field filter.form.title class="px-4 py-2 h-12 md:h-12 w-full text-black text-sm md:text-lg rounded-l-md focus:outline-none focus:ring focus:ring-blue-400" placeholder="Pesquisar" %}
+
+
+    <button type="submit" id="filtrar-btn" class="bg-blue-500 hover:bg-blue-600 px-4 py-2 h-12  rounded-r-md focus:outline-none focus:ring focus:ring-blue-400">
+        <i class="h-6 w-6 text-white fa-solid fa-magnifying-glass"></i>
+    </button>
+</form>

@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'blog',
     'rest_framework',
     'django_filters',
+    'widget_tweaks',
 ]
 
 MIDDLEWARE = [
@@ -80,7 +81,7 @@ WSGI_APPLICATION = 'scp_blog.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
+        'ENGINE': DATABASE_ENGINE,
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
