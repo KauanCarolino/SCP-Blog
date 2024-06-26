@@ -24,9 +24,11 @@
             <div class="bg-gray-300 p-4 rounded-lg shadow-lg h-auto">
                 <div class="relative">
                     {% if object.image %}
-                        <img src="{{ object.image.url }}" alt="Imagem de {{ object.title }}" class="w-[450px] h-full rounded-lg object-cover">
+                        <img src="{{ object.image.url }}" alt="Imagem de {{ object.title }}" 
+                             class="w-[450px] h-full rounded-lg object-cover">
                     {% else %}
-                        <img src="{% static 'blog/img/scp-image-default.jpg' %}" alt="Imagem padrão para {{ object.title }}" class="w-full h-auto rounded-lg object-cover">
+                        <img src="{% static 'blog/img/scp-image-default.jpg' %}" alt="Imagem padrão para {{ object.title }}" 
+                             class="w-full h-auto rounded-lg object-cover">
                     {% endif %}
                     <div class="scp-image-caption mt-2 text-center">
                         <p>{{ object.image_caption }}</p>

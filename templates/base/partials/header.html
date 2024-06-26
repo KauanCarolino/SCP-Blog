@@ -6,38 +6,43 @@
         <div class="flex">
             <a href="{% url 'blog:home' %}" class="text-center">
                 <img src="{% static 'blog/img/scplogo-removebg-preview.png' %}" alt="Logo" 
-                    class="h-12 md:h-16 w-auto max-w-full mx-auto lg:mx-0">
+                    class="h-28 md:h-16 w-auto max-w-full mx-auto lg:mx-0">
             </a>
-        </div>        
+        </div>
 
         <nav class="w-full md:w-auto">
             <ul class="flex flex-wrap gap-4 text-white justify-center md:justify-start">
                 <li><a href="{% url 'blog:home' %}" class="hover:text-blue-400">Inicial</a></li>
-                <li class="relative">
-                    <a href="#" id="dropdownNavbarLink" data-dropdown-toggle="dropdownNavbar" 
-                       class="flex items-center justify-between hover:text-blue-400 ">Categorias 
-                        <i class="ml-1 fa-solid fa-chevron-down"></i>
+                <li class="relative group">
+                    <a href="#" id="dropdownHoverButton" data-dropdown-toggle="dropdownHover" data-dropdown-trigger="hover" 
+                       class="flex items-center justify-between hover:text-blue-400">
+                        Categorias 
+                        <i class="ml-1 fa-solid fa-chevron-down transition-transform duration-300 group-hover:rotate-180"></i>
                     </a>
-                    <div id="dropdownNavbar" class="z-10 hidden absolute top-full right-0 mt-2 font-normal bg-gray-800 divide-y divide-gray-100 rounded-lg shadow w-44">
-                        <ul class="py-2 text-sm text-white" aria-labelledby="dropdownLargeButton">
+                    <div id="dropdownHover" class="z-10 hidden bg-gray-800 divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700">
+                        <ul class="py-2 text-sm text-white" aria-labelledby="dropdownHoverButton">
                             <li>
-                                <a href="#" class="block px-4 py-2 hover:bg-gray-700 ">SCPs</a>
+                                <a href="#" class="block px-4 py-2 hover:bg-gray-700">SCPs</a>
                             </li>
                             <li>
-                                <a href="#" class="block px-4 py-2 hover:bg-gray-700 ">Contos</a>
+                                <a href="#" class="block px-4 py-2 hover:bg-gray-700">Contos</a>
                             </li>
                             <li>
-                                <a href="#" class="block px-4 py-2 hover:bg-gray-700 ">Artes</a>
+                                <a href="#" class="block px-4 py-2 hover:bg-gray-700">Artes</a>
                             </li>
                         </ul>
                     </div>
                 </li>
+                
+                
                 
                 <li><a href="#" class="hover:text-blue-400">Sobre</a></li>
                 <li><a href="#" class="hover:text-blue-400">Contato</a></li>
             </ul>
         </nav>
 
-        {% include "base/partials/search_pubblication.html" %}
+        {% if not is_detail_publication %}
+            {% include "base/partials/search_pubblication.html" %}
+        {% endif %}
     </div>
 </header>
