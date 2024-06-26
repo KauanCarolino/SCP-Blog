@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.db.models import Q
-from django.views.generic import ListView, DetailView
+from django.views.generic import ListView, DetailView, TemplateView
 from django_filters.views import FilterView
 from blog.filters import PublicationFilterSet
 from blog.models import Publication
@@ -28,35 +28,29 @@ class BlogListView(FilterView):
         return context
 
 
-# class RecipeViewSearch(RecipeListviewBase):
-#     template_name = 'recipes/pages/search.html'
-
-#     def get_queryset(self, *args, **kwargs):
-#         search_term = self.request.GET.get('q','')
-#         qs = super().get_queryset(*args, **kwargs)
-#         qs = qs.filter(
-#             Q(
-#             Q(title__icontains=search_term) |
-#             Q(description__icontains=search_term),
-#         ),
-#         )
-#         return qs   
-    
-#     def get_context_data(self, *args, **kwargs):
-#         ctx = super().get_context_data(*args, **kwargs)
-#         search_term = self.request.GET.get('q','')
-
-#         ctx.update({
-#         'page_title': f'Search for "{search_term}" |',
-#         'search_term': search_term,
-#         'additional_url_query': f'&q={search_term}',
-#         })
-
-#         return ctx
-
 class BlogDetailView(DetailView):
     template_name = "page/publication_detail.html"
     model = Publication
 
-    queryset = Publication.objects.all()
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['is_detail_publication'] = True
+        return context
     
+
+class AboutlView(TemplateView):
+    template_name = "page/about.html"
+    model = Publication
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        return context
+    
+
+class ContactslView(TemplateView):
+    template_name = "page/contacts.html"
+    model = Publication
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        return context
