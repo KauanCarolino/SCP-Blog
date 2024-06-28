@@ -663,8 +663,8 @@ input::placeholder,textarea::placeholder {
   padding: 0;
 }
 
-::-webkit-date-and-time-value {
-  min-height: 1.5em;
+input[type="time"]::-webkit-calendar-picker-indicator {
+  background: none;
 }
 
 select:not([size]) {
@@ -1143,6 +1143,10 @@ input:checked + .toggle-bg {
   order: 0;
 }
 
+.order-4 {
+  order: 4;
+}
+
 .col-span-2 {
   grid-column: span 2 / span 2;
 }
@@ -1209,12 +1213,12 @@ input:checked + .toggle-bg {
   display: none;
 }
 
-.h-0 {
-  height: 0px;
-}
-
 .h-12 {
   height: 3rem;
+}
+
+.h-28 {
+  height: 7rem;
 }
 
 .h-4 {
@@ -1241,22 +1245,6 @@ input:checked + .toggle-bg {
   height: 100%;
 }
 
-.h-20 {
-  height: 5rem;
-}
-
-.h-2 {
-  height: 0.5rem;
-}
-
-.h-28 {
-  height: 7rem;
-}
-
-.h-32 {
-  height: 8rem;
-}
-
 .w-1\/2 {
   width: 50%;
 }
@@ -1281,12 +1269,12 @@ input:checked + .toggle-bg {
   width: 450px;
 }
 
-.w-full {
-  width: 100%;
-}
-
 .w-auto {
   width: auto;
+}
+
+.w-full {
+  width: 100%;
 }
 
 .max-w-full {
@@ -1409,6 +1397,11 @@ input:checked + .toggle-bg {
 
 .gap-y-10 {
   row-gap: 2.5rem;
+}
+
+.gap-x-6 {
+  -moz-column-gap: 1.5rem;
+       column-gap: 1.5rem;
 }
 
 .space-x-2 > :not([hidden]) ~ :not([hidden]) {
@@ -1562,6 +1555,10 @@ input:checked + .toggle-bg {
   padding: 1rem;
 }
 
+.p-10 {
+  padding: 2.5rem;
+}
+
 .px-2 {
   padding-left: 0.5rem;
   padding-right: 0.5rem;
@@ -1673,6 +1670,11 @@ input:checked + .toggle-bg {
   color: rgb(28 100 242 / var(--tw-text-opacity));
 }
 
+.text-gray-400 {
+  --tw-text-opacity: 1;
+  color: rgb(156 163 175 / var(--tw-text-opacity));
+}
+
 .text-gray-500 {
   --tw-text-opacity: 1;
   color: rgb(107 114 128 / var(--tw-text-opacity));
@@ -1756,18 +1758,6 @@ input:checked + .toggle-bg {
   transition-duration: 300ms;
 }
 
-.duration-700 {
-  transition-duration: 700ms;
-}
-
-.duration-0 {
-  transition-duration: 0s;
-}
-
-.duration-150 {
-  transition-duration: 150ms;
-}
-
 .ease-in-out {
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
@@ -1841,28 +1831,6 @@ input:checked + .toggle-bg {
   --tw-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
   --tw-shadow-colored: 0 20px 25px -5px var(--tw-shadow-color), 0 8px 10px -6px var(--tw-shadow-color);
   box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
-}
-
-.hover\:transition:hover {
-  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, -webkit-backdrop-filter;
-  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;
-  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter, -webkit-backdrop-filter;
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-  transition-duration: 150ms;
-}
-
-.hover\:transition-all:hover {
-  transition-property: all;
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-  transition-duration: 150ms;
-}
-
-.hover\:duration-700:hover {
-  transition-duration: 700ms;
-}
-
-.hover\:duration-150:hover {
-  transition-duration: 150ms;
 }
 
 .focus\:outline-none:focus {
@@ -1965,6 +1933,11 @@ input:checked + .toggle-bg {
   color: rgb(156 163 175 / var(--tw-text-opacity));
 }
 
+.dark\:text-gray-500:is(.dark *) {
+  --tw-text-opacity: 1;
+  color: rgb(107 114 128 / var(--tw-text-opacity));
+}
+
 .dark\:text-white:is(.dark *) {
   --tw-text-opacity: 1;
   color: rgb(255 255 255 / var(--tw-text-opacity));
@@ -2009,14 +1982,6 @@ input:checked + .toggle-bg {
     height: 4rem;
   }
 
-  .md\:h-1 {
-    height: 0.25rem;
-  }
-
-  .md\:h-20 {
-    height: 5rem;
-  }
-
   .md\:w-auto {
     width: auto;
   }
@@ -2029,10 +1994,6 @@ input:checked + .toggle-bg {
     font-size: 1.125rem;
     line-height: 1.75rem;
   }
-
-  .md\:duration-150 {
-    transition-duration: 150ms;
-  }
 }
 
 @media (min-width: 1024px) {
@@ -2044,17 +2005,33 @@ input:checked + .toggle-bg {
     order: 0;
   }
 
+  .lg\:order-3 {
+    order: 3;
+  }
+
+  .lg\:order-1 {
+    order: 1;
+  }
+
+  .lg\:order-2 {
+    order: 2;
+  }
+
+  .lg\:order-5 {
+    order: 5;
+  }
+
   .lg\:col-span-1 {
     grid-column: span 1 / span 1;
+  }
+
+  .lg\:col-span-2 {
+    grid-column: span 2 / span 2;
   }
 
   .lg\:mx-0 {
     margin-left: 0px;
     margin-right: 0px;
-  }
-
-  .lg\:h-16 {
-    height: 4rem;
   }
 
   .lg\:w-auto {
@@ -2067,6 +2044,10 @@ input:checked + .toggle-bg {
 
   .lg\:justify-between {
     justify-content: space-between;
+  }
+
+  .lg\:text-left {
+    text-align: left;
   }
 }
 
