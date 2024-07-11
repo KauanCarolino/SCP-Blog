@@ -1,7 +1,131 @@
 {% extends "base/base.html" %}
 {% load static %}
 
-<title> {% block title %} Contract {% endblock title %} </title>
+<title>{% block title %} The Glitching Void {% endblock title %}</title>
+
+<style>
+  body {
+    background-color: #000;
+    font-family: "Courier New", monospace;
+  }
+  .glitch {
+    position: relative;
+    color: #fff;
+    animation: glitch 2s infinite;
+  }
+  .glitch::before, .glitch::after {
+    content: attr(data-text);
+    position: absolute;
+    left: 0;
+    right: 0;
+    animation: glitch-lines 2s infinite;
+  }
+  .glitch::before {
+    top: -2px;
+    color: #f00;
+    clip: rect(24px, 550px, 90px, 0);
+    animation-duration: 3s;
+  }
+  .glitch::after {
+    top: 2px;
+    color: #0f0;
+    clip: rect(85px, 550px, 140px, 0);
+    animation-duration: 1.5s;
+  }
+  .blink {
+    animation: blink 1s infinite;
+  }
+  .background-glitch {
+    animation: background-glitch 3s infinite;
+  }
+  @keyframes glitch {
+    0% { transform: translate(0); }
+    20% { transform: translate(-5px, 5px); }
+    40% { transform: translate(-5px, -5px); }
+    60% { transform: translate(5px, 5px); }
+    80% { transform: translate(5px, -5px); }
+    100% { transform: translate(0); }
+  }
+  @keyframes glitch-lines {
+    0% { transform: translateY(0); }
+    20% { transform: translateY(-2px); }
+    40% { transform: translateY(2px); }
+    60% { transform: translateY(-1px); }
+    80% { transform: translateY(1px); }
+    100% { transform: translateY(0); }
+  }
+  @keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+  }
+  @keyframes background-glitch {
+    0% { background-color: #000; }
+    50% { background-color: #111; }
+    100% { background-color: #000; }
+  }
+</style>
 
 {% block content %}
+<div class="background-glitch">
+  <div class="container mx-auto px-4 py-8">
+    <div class="flex items-center justify-center mb-8">
+      <img src="{% static 'blog/img/scplogo-removebg-preview.png' %}" alt="SCP Logo" class="w-32 h-32 rounded-full shadow-lg object-cover glitch" data-text="SCP Logo">
+      <h1 class="text-4xl font-bold ml-4 glitch" data-text="About SCP Foundation">About SCP Foundation</h1>
+    </div>
+    
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+      <div class="md:col-span-1">
+        <p class="text-lg leading-relaxed blink">Welcome to the SCP Foundation, a secretive organization dedicated to securing, containing, and protecting anomalous objects, entities, and phenomena.</p>
+        <p class="mt-4 text-lg leading-relaxed">Our mission is to maintain normalcy within the world by studying and suppressing supernatural and paranormal threats.</p>
+      </div>
+      
+      <div class="md:col-span-1">
+        <img src="{% static 'blog/img/scp-image-default.jpg' %}" alt="SCP Facility" class="rounded-lg shadow-lg glitch" data-text="SCP Facility">
+      </div>
+    </div>
+    
+    <div class="mt-8 text-lg leading-relaxed">
+      <p>Explore our vast archives and discover the mysteries of the SCP universe, where every object has a story to tell and every entity poses a potential danger.</p>
+      <p class="mt-4 blink">Join us in our mission to protect humanity from the unknown and ensure the safety of the world we live in.</p>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Enhance the glitch effect for images
+  setInterval(function() {
+    document.querySelectorAll('.glitch, .logo').forEach(function(element) {
+      element.style.filter = 'grayscale(' + Math.random() * 100 + '%)';
+      element.style.transform = 'scale(' + (Math.random() * 2) + ')';
+    });
+  }, 100);
+
+  // Randomize blink effect
+  setInterval(function() {
+    document.querySelectorAll('.blink').forEach(function(element) {
+      element.style.animationDuration = (Math.random() * 2) + 's';
+    });
+  }, 1000);
+
+  // Cursor trail effect
+  document.body.style.cursor = 'none';
+  document.addEventListener('mousemove', function(event) {
+    var cursor = document.createElement('div');
+    cursor.style.position = 'absolute';
+    cursor.style.top = event.clientY + 'px';
+    cursor.style.left = event.clientX + 'px';
+    cursor.style.width = '10px';
+    cursor.style.height = '10px';
+    cursor.style.background = 'red';
+    cursor.style.borderRadius = '50%';
+    cursor.style.transition = 'transform 0.2s ease';
+    document.body.appendChild(cursor);
+    setTimeout(function() {
+      cursor.style.transform = 'scale(3)';
+    }, 0);
+    setTimeout(function() {
+      cursor.remove();
+    }, 300);
+  });
+</script>
 {% endblock content %}
