@@ -33,16 +33,58 @@
                         </ul>
                     </div>
                 </li>
-                
-                
-                
-                <li><a href="#" class="hover:text-blue-400">Sobre</a></li>
-                <li><a href="#" class="hover:text-blue-400">Contato</a></li>
+                <li><a href="{% url 'blog:about' %}" class="hover:text-blue-400">Sobre</a></li>
+                <li><a href="{% url 'blog:contract' %}" class="hover:text-blue-400">Contato</a></li>
             </ul>
         </nav>
 
         {% if not is_detail_publication %}
             {% include "base/partials/search_pubblication.html" %}
+        {% endif %}
+
+        {% if user.is_authenticated %}
+            <div>
+                <img id="avatarButton" type="button" data-dropdown-toggle="userDropdown" data-dropdown-placement="bottom-start" 
+                     src="{% static "blog/img/scplogo-removebg-preview.png" %}"
+                     class="w-10 h-10 rounded-full object-cover cursor-pointer" alt="User dropdown">
+                
+                <div id="userDropdown" class="z-10 hidden bg-gray-800 divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 dark:divide-gray-600">
+                    <div class="px-4 py-3 text-sm text-white">
+                        <div>{{ user.username }}</div>
+                        <div class="font-medium truncate">{{ user.email|default:"Não Cadastrado" }}</div>
+                    </div>
+                    <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="avatarButton">
+                        <li>
+                            <a href="{% url "users:login" %}" class="block px-4 py-2 bg-gray-800 text-white hover:bg-gray-700">Login</a>
+                        </li>
+                        <li>
+                            <a href="{% url "users:register" %}" class="block px-4 py-2 bg-gray-800 text-white hover:bg-gray-700">Register</a>
+                        </li>
+                    </ul>
+                    <form class="py-1" method="post" action="{% url 'users:logout' %}">
+                        {% csrf_token %}
+                        <button type="submit" class="w-full text-left block px-4 py-2 text-sm bg-gray-800 text-white hover:bg-gray-700">Sair</button>
+                    </form>
+                </div>
+            </div>
+        {% else %}
+            <div>
+                <div>
+                    <i id="avatarButton" type="button" data-dropdown-toggle="userDropdown" data-dropdown-placement="bottom-start" 
+                       class="fa-solid fa-user cursor-pointer"></i>                    
+                    <div id="userDropdown" class="z-10 hidden bg-gray-800 divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 dark:divide-gray-600">
+                        <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="avatarButton">
+                            <li>
+                                <a href="{% url "users:login" %}" class="block px-4 py-2 bg-gray-800 text-white hover:bg-gray-700">Login</a>
+                            </li>
+                            <li>
+                                <a href="{% url "users:register" %}" class="block px-4 py-2 bg-gray-800 text-white hover:bg-gray-700">Register</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>                
+                </div>
+            </div>
         {% endif %}
     </div>
 </header>

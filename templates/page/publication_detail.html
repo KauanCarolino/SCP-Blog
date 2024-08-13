@@ -5,22 +5,22 @@
 
 {% block content %}
 
-<div class="container p-4">
-    <div class="grid grid-cols-1 lg:grid-cols-2 gap-y-10">
-        
-        <div class="col-span-2 order-1 lg:order-none">
+<div class="container p-10">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-y-10 gap-x-6">
+
+        <div class="lg:col-span-1 col-span-2 order-2 lg:order-1">
             <p class="text-left"><strong>Item nº:</strong> {{ object.item_number }}</p>
         </div>
 
-        <div class="col-span-2 order-2 lg:order-none">
+        <div class="col-span-2 order-3 lg:order-2">
             <p class="text-left"><strong>Classe do Objeto:</strong> {{ object.get_object_class_display }}</p>
         </div>
 
-        <div class="lg:col-span-1 col-span-2 order-3 lg:order-none">
+        <div class="lg:col-span-1 col-span-2 order-4 lg:order-3">
             <p class="text-left"><strong>Procedimentos Especiais de Contenção:</strong> {{ object.special_containment_procedures }}</p>
         </div>
 
-        <div class="lg:col-span-1 col-span-2 flex justify-center items-center lg:order-4 order-none">
+        <div class="lg:col-span-1 col-span-2 flex justify-center items-center order-1 lg:order-4">
             <div class="bg-gray-300 p-4 rounded-lg shadow-lg h-auto">
                 <div class="relative">
                     {% if object.image %}
@@ -37,10 +37,10 @@
             </div>
         </div>
 
-        <div class="col-span-2 order-5 lg:order-none">
+        <div class="lg:col-span-2 col-span-2 order-5 lg:order-5">
             <p class="text-left"><strong>Descrição:</strong> {{ object.description }}</p>
         </div>
-        
+
     </div>
 </div>
 
