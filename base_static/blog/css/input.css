@@ -1,0 +1,15 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@source "../node_modules/flowbite";
+
+@layer base {
+
+};
+
+@layer components {
+    .teste {
+        @apply bg-red-500;
+    };
+};
