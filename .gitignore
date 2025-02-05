@@ -129,4 +129,7 @@ gunicorn-error-log
 db.sqlite3
 db copy.sqlite3
 static/
-jstools/
+
+tailwind/package-lock.json
+tailwind/node_modules/
+tailwind/node_modules/*

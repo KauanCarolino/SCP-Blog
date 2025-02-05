@@ -4,16 +4,30 @@
 <title>{% block title %} Detalhe {% endblock title %}</title>
 
 {% block content %}
-
-<div class="container p-10">
-    <div class="grid grid-cols-1 lg:grid-cols-2 gap-y-10 gap-x-6">
-
-        <div class="lg:col-span-1 col-span-2 order-2 lg:order-1">
-            <p class="text-left"><strong>Item nº:</strong> {{ object.item_number }}</p>
+    
+<div class="container p-4">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-y-10">
+        
+        <div class="col-span-2">
+            <p class="text-left">{{ object.item_number }}</p>
         </div>
 
-        <div class="col-span-2 order-3 lg:order-2">
-            <p class="text-left"><strong>Classe do Objeto:</strong> {{ object.get_object_class_display }}</p>
+        <div class="col-span-2">
+            <p class="text-left">Classe do Objeto: {{ object.get_object_class_display }}</p>
+        </div>
+
+        <div class="col-span-1">
+            <p class="text-left">Procedimentos Especiais de Contenção: {{ object.special_containment_procedures }}</p>
+        </div>
+
+        <div class="col-span-1 mt-2 mx-auto bg-gray-300 p-10 h-[370px]">
+            <div class="relative">
+                {% if object.image %}
+                    <img src="{{ object.image.url }}" alt="Imagem {{ object.title }}" class="w-[400px] h-72 rounded-lg">
+                {% else %}
+                    <img src="{% static "blog/img/scp-image-default.jpg" %}" alt="Imagem {{ object.title }}" class="w-[400px] h-72 object-cover rounded-lg">
+                {% endif %}
+            </div>
         </div>
 
         <div class="lg:col-span-1 col-span-2 order-4 lg:order-3">
