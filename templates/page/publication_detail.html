@@ -6,17 +6,28 @@
 {% block content %}
     
 <div class="container p-4">
-    <div class="row">
-        <div class="col-md-6">
-            <p class="text-center text-md-left">{{ object.special_containment_procedures }}</p>
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-y-10">
+        
+        <div class="col-span-2">
+            <p class="text-left">{{ object.item_number }}</p>
         </div>
 
-        <div class="col-md-6 mt-4 mt-md-0">
-            {% if object.image %}
-                <img src="{{ object.image.url }}" alt="Imagem {{ object.title }}" class="img-fluid">
-            {% else %}
-                <img src="{% static "blog/img/scp-image-default.jpg" %}" alt="Imagem {{ object.title }}" class="img-fluid">
-            {% endif %}
+        <div class="col-span-2">
+            <p class="text-left">Classe do Objeto: {{ object.get_object_class_display }}</p>
+        </div>
+
+        <div class="col-span-1">
+            <p class="text-left">Procedimentos Especiais de Contenção: {{ object.special_containment_procedures }}</p>
+        </div>
+
+        <div class="col-span-1 mt-2 mx-auto bg-gray-300 p-10 h-[370px]">
+            <div class="relative">
+                {% if object.image %}
+                    <img src="{{ object.image.url }}" alt="Imagem {{ object.title }}" class="w-[400px] h-72 rounded-lg">
+                {% else %}
+                    <img src="{% static "blog/img/scp-image-default.jpg" %}" alt="Imagem {{ object.title }}" class="w-[400px] h-72 object-cover rounded-lg">
+                {% endif %}
+            </div>
         </div>
     </div>
 </div>
