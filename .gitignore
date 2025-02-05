@@ -133,3 +133,6 @@ static/
 tailwind/package-lock.json
 tailwind/node_modules/
 tailwind/node_modules/*
+
+*/migrations/
+*/migrations/*
