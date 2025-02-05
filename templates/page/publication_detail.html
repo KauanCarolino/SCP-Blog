@@ -1,7 +1,7 @@
 {% extends "base/base.html" %}
 {% load static %}
 
-<title> {% block title %} Detalhe {% endblock title %} </title>
+<title>{% block title %} Detalhe {% endblock title %}</title>
 
 {% block content %}
     
@@ -29,6 +29,32 @@
                 {% endif %}
             </div>
         </div>
+
+        <div class="lg:col-span-1 col-span-2 order-4 lg:order-3">
+            <p class="text-left"><strong>Procedimentos Especiais de Contenção:</strong> {{ object.special_containment_procedures }}</p>
+        </div>
+
+        <div class="lg:col-span-1 col-span-2 flex justify-center items-center order-1 lg:order-4">
+            <div class="bg-gray-300 p-4 rounded-lg shadow-lg h-auto">
+                <div class="relative">
+                    {% if object.image %}
+                        <img src="{{ object.image.url }}" alt="Imagem de {{ object.title }}" 
+                             class="w-[450px] h-full rounded-lg object-cover">
+                    {% else %}
+                        <img src="{% static 'blog/img/scp-image-default.jpg' %}" alt="Imagem padrão para {{ object.title }}" 
+                             class="w-full h-auto rounded-lg object-cover">
+                    {% endif %}
+                    <div class="scp-image-caption mt-2 text-center">
+                        <p>{{ object.image_caption }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="lg:col-span-2 col-span-2 order-5 lg:order-5">
+            <p class="text-left"><strong>Descrição:</strong> {{ object.description }}</p>
+        </div>
+
     </div>
 </div>
 
