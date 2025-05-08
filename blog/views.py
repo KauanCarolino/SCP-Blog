@@ -31,6 +31,7 @@ class BlogListView(FilterView):
 class BlogDetailView(DetailView):
     template_name = "page/publication_detail.html"
     model = Publication
+    pk_url_kwarg = 'unique_id'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
