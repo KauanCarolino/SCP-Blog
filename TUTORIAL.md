@@ -64,6 +64,23 @@ Bem-vindo, agente da Fundação SCP, ao tutorial que o guiará pela criação de
   ```
     python manage.py runserver
   ```
+## Passo 8: Configuração do Tailwind
+  1. baixe o Node JS e o npm:
+      • No Windows:
+        ```
+           Acesse o [site oficial do Node.js](https://nodejs.org) e baixe a versão LTS (Long Term Support).
+        ```
+      • No Linux/Mac:
+        ```bash
+          sudo apt update
+          sudo apt install nodejs npm
+        ```
+  2. Verifique a instalação:
+     ```bash
+        node -v
+        npm -v
+     ```
+        
 Acesse http://127.0.0.1:8000/ em seu navegador para ver a aplicação em ação.
 
 ## Passo 8: Contribuindo com Descobertas
