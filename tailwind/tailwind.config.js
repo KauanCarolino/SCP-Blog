@@ -9,7 +9,11 @@ module.exports = {
     "../tailwind/node_modules/flowbite/*/.js",
   ],
   theme: {
-    extend: {},
+    extend: {
+      screens: {
+        '3xl': '1600px',
+      },
+    },
   },
   plugins: [
     require('flowbite/plugin')

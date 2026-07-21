@@ -33,9 +33,67 @@ class BlogDetailView(DetailView):
     model = Publication
     pk_url_kwarg = 'unique_id'
 
+    def get_queryset(self):
+        return super().get_queryset().select_related('author')
+
+    THREAT_MAP = {
+        'SAFE': {
+            'label': 'Baixo',
+            'color': 'bg-green-500',
+            'width': '25%',
+            'text_color': 'text-green-500',
+        },
+        'EUCLID': {
+            'label': 'Médio',
+            'color': 'bg-yellow-500',
+            'width': '65%',
+            'text_color': 'text-yellow-500',
+        },
+        'KETER': {
+            'label': 'Alto',
+            'color': 'bg-red-500',
+            'width': '100%',
+            'text_color': 'text-red-500',
+        },
+        'NOT_SPECIFIED': {
+            'label': 'Desconhecido',
+            'color': 'bg-gray-500',
+            'width': '10%',
+            'text_color': 'text-gray-500',
+        },
+    }
+
+    CONTAINMENT_MAP = {
+        Publication.StateContainment.CONTAINED: {
+            'label': 'Contido',
+            'badge': 'bg-green-900 text-green-400',
+        },
+        Publication.StateContainment.SAFE: {
+            'label': 'Seguro',
+            'badge': 'bg-blue-900 text-blue-400',
+        },
+        Publication.StateContainment.CRITICAL: {
+            'label': 'Crítico',
+            'badge': 'bg-red-900 text-red-400',
+        },
+    }
+    CONTAINMENT_DEFAULT = {
+        'label': 'Não informado',
+        'badge': 'bg-gray-700 text-gray-400',
+    }
+
+    def get_threat_levels(self, obj: Publication) -> dict:
+        return self.THREAT_MAP.get(obj.object_class, self.THREAT_MAP['NOT_SPECIFIED'])
+
+    def get_containment_status(self, obj: Publication) -> dict:
+        return self.CONTAINMENT_MAP.get(obj.state_containment, self.CONTAINMENT_DEFAULT)
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+        obj = self.object
         context['is_detail_publication'] = True
+        context['threat_levels'] = self.get_threat_levels(obj)
+        context['containment_status'] = self.get_containment_status(obj)
         return context
     
 

@@ -73,12 +73,19 @@
                                 <div class="p-4 bg-gray-900 border-t border-gray-800">
                                     <div class="flex items-center justify-between">
                                         <div class="flex items-center">
+                                            {% if object.is_published %}
                                             <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-green-500 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
                                             </svg>
                                             <span class="text-green-500 text-xs">VERIFICADO</span>
+                                            {% else %}
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-yellow-500 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                                            </svg>
+                                            <span class="text-yellow-500 text-xs">NÃO VERIFICADO</span>
+                                            {% endif %}
                                         </div>
-                                        <span class="text-xs text-gray-500">Última atualização: 2023-07-14</span>
+                                        <span class="text-xs text-gray-500">Última atualização: {{ object.updated_at|date:'d/m/Y' }}</span>
                                     </div>
                                 </div>
                             </div>
@@ -94,19 +101,21 @@
                                     <div class="flex justify-between items-center">
                                         <span class="text-gray-400">Nível de Ameaça:</span>
                                         <div class="flex items-center">
+
                                             <div class="h-2 w-32 bg-gray-700 rounded-full overflow-hidden">
-                                                <div class="h-full bg-yellow-500" style="width: 65%"></div>
+                                            <div class="h-full {{ threat_levels.color }}" style="width: {{ threat_levels.width }}"></div>
                                             </div>
-                                            <span class="ml-2 text-yellow-500 font-bold">Médio</span>
+                                            <span class="ml-2 {{ threat_levels.text_color }} font-bold">{{ threat_levels.label }}</span>
+
                                         </div>
                                     </div>
                                     <div class="flex justify-between items-center">
                                         <span class="text-gray-400">Estado de Contenção:</span>
-                                        <span class="px-2 py-1 bg-green-900 text-green-400 rounded-md text-sm">SEGURO</span>
+                                        <span class="px-2 py-1 {{ containment_status.badge }} rounded-md text-sm">{{ containment_status.label|upper }}</span>
                                     </div>
                                     <div class="flex justify-between items-center">
                                         <span class="text-gray-400">Local:</span>
-                                        <span class="text-gray-300">Site-19, Ala E</span>
+                                        <span class="text-gray-300">{% if object.local %}{{ object.local }}{% else %}Não informado{% endif %}</span>
                                     </div>
                                 </div>
                             </div>
@@ -155,11 +164,11 @@
                                     <div class="flex flex-col sm:flex-row sm:justify-between">
                                         <div class="mb-2 sm:mb-0">
                                             <span class="text-gray-500">Data do documento:</span> 
-                                            <span>13/05/2023</span>
+                                            <span>{{ object.created_at|date:'d/m/Y' }}</span>
                                         </div>
                                         <div>
-                                            <span class="text-gray-500">Autoria:</span> 
-                                            <span>Dr. █████</span>
+                                            <span class="text-gray-500">Autoria:</span>
+                                            <span>{% if object.author %}{{ object.author.get_full_name|default:object.author.username }}{% else %}Dr. █████{% endif %}</span>
                                         </div>
                                     </div>
                                 </div>
@@ -167,18 +176,22 @@
                         </div>
                     </div>
 
+                    {% if object.addendum %}
                     <div class="mt-8 bg-gray-900 rounded-lg shadow-lg border border-gray-700 p-4">
                         <h3 class="text-lg font-bold text-gray-300 mb-3 flex items-center">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z" />
                             </svg>
-                            Observações
+                            Adendo
                         </h3>
                         <blockquote class="border-l-2 border-gray-600 pl-4 text-gray-400 italic">
-                            "Recomendo revisão dos procedimentos de contenção a cada 45 dias devido à natureza imprevisível do objeto. Todos os incidentes, mesmo os menores, devem ser relatados imediatamente."
-                            <footer class="text-right mt-2 text-sm">— Dr. █████, Supervisor de Pesquisa</footer>
+                            {{ object.addendum|linebreaks }}
+                            {% if object.author %}
+                            <footer class="text-right mt-2 text-sm">— {{ object.author.get_full_name|default:object.author.username }}</footer>
+                            {% endif %}
                         </blockquote>
                     </div>
+                    {% endif %}
                 </div>
             </div>
         </div>

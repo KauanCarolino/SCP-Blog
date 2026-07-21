@@ -136,3 +136,6 @@ tailwind/node_modules/*
 
 */migrations/
 */migrations/*
+
+# Cursor
+.cursor/
