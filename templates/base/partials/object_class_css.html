@@ -1,0 +1,14 @@
+{% comment %}Outputs scp-class-* modifier for a given object_class string.{% endcomment %}
+{% spaceless %}
+{% if object_class == "SAFE" %}scp-class-safe
+{% elif object_class == "EUCLID" %}scp-class-euclid
+{% elif object_class == "KETER" %}scp-class-keter
+{% elif object_class == "THAUMIEL" %}scp-class-thaumiel
+{% elif object_class == "NEUTRALIZED" %}scp-class-neutralized
+{% elif object_class == "APOLLYON" %}scp-class-apollyon
+{% elif object_class == "ARCHON" %}scp-class-archon
+{% elif object_class == "EXPLAINED" %}scp-class-explained
+{% elif object_class == "PENDING" %}scp-class-pending
+{% else %}scp-class-unknown
+{% endif %}
+{% endspaceless %}

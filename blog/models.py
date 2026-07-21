@@ -10,16 +10,47 @@ class Category(BaseModel):
     def __str__(self):
         return self.name
 
+
 NOT_SPECIFIED = 'NOT_SPECIFIED'
 SAFE = 'SAFE'
 EUCLID = 'EUCLID'
 KETER = 'KETER'
+THAUMIEL = 'THAUMIEL'
+NEUTRALIZED = 'NEUTRALIZED'
+APOLLYON = 'APOLLYON'
+ARCHON = 'ARCHON'
+EXPLAINED = 'EXPLAINED'
+PENDING = 'PENDING'
 
 OBJECT_CLASS_CHOICES = (
-    (NOT_SPECIFIED, "Não Especificado"),
-    (SAFE, "Seguro"),
-    (EUCLID, "Euclideo"),
-    (KETER, "Keter"),
+    (SAFE, 'Seguro'),
+    (EUCLID, 'Euclídeo'),
+    (KETER, 'Keter'),
+    (THAUMIEL, 'Thaumiel'),
+    (NEUTRALIZED, 'Neutralizado'),
+    (APOLLYON, 'Apollyon'),
+    (ARCHON, 'Archon'),
+    (EXPLAINED, 'Explicado'),
+    (PENDING, 'Pendente'),
+    (NOT_SPECIFIED, 'Não Especificado'),
+)
+
+WHITE = 'WHITE'
+YELLOW = 'YELLOW'
+ORANGE = 'ORANGE'
+RED = 'RED'
+PURPLE = 'PURPLE'
+BLACK = 'BLACK'
+INDETERMINATE = 'INDETERMINATE'
+
+THREAT_LEVEL_CHOICES = (
+    (WHITE, 'Branco'),
+    (YELLOW, 'Amarelo'),
+    (ORANGE, 'Laranja'),
+    (RED, 'Vermelho'),
+    (PURPLE, 'Roxo'),
+    (BLACK, 'Preto'),
+    (INDETERMINATE, 'Indeterminado'),
 )
 
 
@@ -33,8 +64,17 @@ class Publication(BaseModel):
     item_number = models.CharField(max_length=50, verbose_name='Número do Item')
     name_SCP = models.CharField(max_length=50, verbose_name='Nome SCP')
     object_class = models.CharField(
-        max_length=13, choices=OBJECT_CLASS_CHOICES, 
-        default=NOT_SPECIFIED, verbose_name='Classe do Objeto')
+        max_length=20,
+        choices=OBJECT_CLASS_CHOICES,
+        default=NOT_SPECIFIED,
+        verbose_name='Classe do Objeto',
+    )
+    threat_level = models.CharField(
+        max_length=20,
+        choices=THREAT_LEVEL_CHOICES,
+        default=INDETERMINATE,
+        verbose_name='Nível de Ameaça',
+    )
     image = models.ImageField(
         upload_to='scpImage/cover/%Y/%m/%d/', blank=True, default='', verbose_name='Imagem')
     resume = models.CharField(max_length=100, verbose_name='Resumo')
@@ -52,15 +92,3 @@ class Publication(BaseModel):
 
     def __str__(self):
         return self.title
-    
-# class News(models.Model):
-#     title = models.CharField(max_length=100)
-#     content = models.TextField()
-#     image = models.ImageField(upload_to='newsImages/%Y/%m/%d/', blank=True, null=True)
-#     author = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
-#     publication_date = models.DateTimeField(auto_now_add=True)
-#     last_modified = models.DateTimeField(auto_now=True)
-#     is_published = models.BooleanField(default=False)
-
-#     def __str__(self):
-#         return self.title

@@ -37,29 +37,54 @@ class BlogDetailView(DetailView):
         return super().get_queryset().select_related('author')
 
     THREAT_MAP = {
-        'SAFE': {
-            'label': 'Baixo',
-            'color': 'bg-green-500',
-            'width': '25%',
-            'text_color': 'text-green-500',
+        'WHITE': {
+            'label': 'Branco',
+            'color': 'bg-gray-200',
+            'width': '15%',
+            'text_color': 'text-gray-200',
+            'dot': 'bg-gray-200',
         },
-        'EUCLID': {
-            'label': 'Médio',
-            'color': 'bg-yellow-500',
-            'width': '65%',
-            'text_color': 'text-yellow-500',
+        'YELLOW': {
+            'label': 'Amarelo',
+            'color': 'bg-yellow-400',
+            'width': '30%',
+            'text_color': 'text-yellow-400',
+            'dot': 'bg-yellow-400',
         },
-        'KETER': {
-            'label': 'Alto',
+        'ORANGE': {
+            'label': 'Laranja',
+            'color': 'bg-orange-500',
+            'width': '45%',
+            'text_color': 'text-orange-500',
+            'dot': 'bg-orange-500',
+        },
+        'RED': {
+            'label': 'Vermelho',
             'color': 'bg-red-500',
-            'width': '100%',
+            'width': '60%',
             'text_color': 'text-red-500',
+            'dot': 'bg-red-500',
         },
-        'NOT_SPECIFIED': {
-            'label': 'Desconhecido',
+        'PURPLE': {
+            'label': 'Roxo',
+            'color': 'bg-purple-500',
+            'width': '80%',
+            'text_color': 'text-purple-500',
+            'dot': 'bg-purple-500',
+        },
+        'BLACK': {
+            'label': 'Preto',
+            'color': 'bg-neutral-950',
+            'width': '100%',
+            'text_color': 'text-neutral-300',
+            'dot': 'bg-neutral-950',
+        },
+        'INDETERMINATE': {
+            'label': 'Indeterminado',
             'color': 'bg-gray-500',
             'width': '10%',
             'text_color': 'text-gray-500',
+            'dot': 'bg-gray-500',
         },
     }
 
@@ -83,7 +108,7 @@ class BlogDetailView(DetailView):
     }
 
     def get_threat_levels(self, obj: Publication) -> dict:
-        return self.THREAT_MAP.get(obj.object_class, self.THREAT_MAP['NOT_SPECIFIED'])
+        return self.THREAT_MAP.get(obj.threat_level, self.THREAT_MAP['INDETERMINATE'])
 
     def get_containment_status(self, obj: Publication) -> dict:
         return self.CONTAINMENT_MAP.get(obj.state_containment, self.CONTAINMENT_DEFAULT)

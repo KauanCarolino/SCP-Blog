@@ -1,36 +1,22 @@
 {% extends "base/base.html" %}
 {% load static %}
 
-<title>{% block title %}{{ object.item_number }} | Arquivo SCP{% endblock title %}</title>
+{% block title %}{{ object.item_number }}{% endblock title %}
 
 {% block content %}
-    <div class="min-h-screen bg-gray-900 text-gray-200 pb-16">
+    <div class="text-gray-200 pb-16">
 
-        <div class="bg-black text-green-500 py-2 px-4 flex items-center justify-between text-sm font-mono border-b border-green-700">
-            <div class="flex items-center">
-                <span class="mr-4 px-2 py-1 bg-green-900 text-green-400 rounded">NÍVEL 4 • ACESSO AUTORIZADO</span>
-                <span class="animate-pulse mr-2">●</span>
-                <span>TERMINAL SEGURO</span>
-            </div>
-        </div>
-
-        <div class="bg-gradient-to-r from-red-900 to-red-800 shadow-xl border-b-4 border-red-600">
-            <div class="container mx-auto py-6 px-4">
-                <div class="flex flex-col md:flex-row justify-between items-center">
-                    <div class="flex items-center mb-4 md:mb-0">
-                        <h1 class="text-3xl md:text-4xl font-bold tracking-tighter">{{ object.item_number }}</h1>
-                    </div>
-                    <div class="flex flex-col items-end">
-                        <div class="mb-1 border-2 border-yellow-500 px-3 py-1 rounded-md bg-yellow-900 bg-opacity-50">
-                            <p class="text-yellow-300 font-bold text-lg">Classe: {{ object.get_object_class_display }}</p>
-                        </div>
-                    </div>
+        <div class="bg-gradient-to-r from-red-900 to-red-800 border-b-4 border-red-600">
+            <div class="container mx-auto py-5 px-4">
+                <div class="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-3">
+                    <h1 class="text-3xl md:text-4xl font-bold tracking-tighter text-white">{{ object.item_number }}</h1>
+                    {% include "base/partials/object_class_badge.html" with publication=object size="lg" %}
                 </div>
             </div>
         </div>
 
-        <div class="container mx-auto px-4 ">
-            <div class="bg-gray-800 border border-gray-700 rounded-lg shadow-2xl p-1">
+        <div class="container mx-auto px-4 pt-6">
+            <div class="bg-[#111] border border-[#2a2a2a] shadow-2xl">
 
                 {% comment %} <div class="bg-gray-900 rounded-t-lg border-b border-gray-700 flex overflow-x-auto hide-scrollbar">
                     <div class="flex px-2">
@@ -41,8 +27,8 @@
                     </div>
                 </div> {% endcomment %}
 
-                <div class="p-6 bg-gray-800">
-                    <div class="mb-8 bg-red-900 bg-opacity-30 border-l-4 border-red-600 p-4 rounded-r-lg shadow-lg">
+                <div class="p-4 md:p-6 bg-[#111]">
+                    <div class="mb-8 bg-red-900/30 border-l-4 border-red-600 p-4">
                         <div class="flex items-start">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-3 text-red-500 mt-1 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
@@ -56,13 +42,13 @@
 
                     <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
                         <div class="lg:col-span-5 space-y-6">
-                            <div class="bg-black rounded-lg overflow-hidden shadow-lg border border-gray-700">
+                            <div class="bg-[#0a0a0a] border border-[#2a2a2a] overflow-hidden">
                                 <div class="relative">
-                                    <div class="absolute top-0 left-0 right-0 py-1 px-3 bg-black bg-opacity-70 flex justify-between items-center">
+                                    <div class="absolute top-0 left-0 right-0 z-10 py-1.5 px-3 bg-black/70 flex justify-between items-center">
                                         <span class="text-gray-400 text-xs">Imagem de referência</span>
-                                        <span class="text-xs px-2 py-0.5 bg-red-900 rounded-full">TOP SECRET</span>
+                                        <span class="text-[10px] px-2 py-0.5 bg-red-900 text-red-200 tracking-wider">TOP SECRET</span>
                                     </div>
-                                    <div class="aspect-w-4 aspect-h-3">
+                                    <div class="aspect-[4/3] bg-black">
                                         {% if object.image %}
                                             <img src="{{ object.image.url }}" alt="Imagem {{ object.item_number }}" class="w-full h-full object-cover">
                                         {% else %}
@@ -70,8 +56,8 @@
                                         {% endif %}
                                     </div>
                                 </div>
-                                <div class="p-4 bg-gray-900 border-t border-gray-800">
-                                    <div class="flex items-center justify-between">
+                                <div class="p-3 bg-[#0a0a0a] border-t border-[#2a2a2a]">
+                                    <div class="flex items-center justify-between gap-2">
                                         <div class="flex items-center">
                                             {% if object.is_published %}
                                             <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-green-500 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -85,60 +71,59 @@
                                             <span class="text-yellow-500 text-xs">NÃO VERIFICADO</span>
                                             {% endif %}
                                         </div>
-                                        <span class="text-xs text-gray-500">Última atualização: {{ object.updated_at|date:'d/m/Y' }}</span>
+                                        <span class="text-xs text-gray-500">Atualizado: {{ object.updated_at|date:'d/m/Y' }}</span>
                                     </div>
                                 </div>
                             </div>
 
-                            <div class="bg-gray-900 rounded-lg shadow-lg border border-gray-700 p-4">
-                                <h3 class="text-lg font-bold text-gray-300 mb-3 flex items-center">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 text-blue-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <div class="bg-[#0a0a0a] border border-[#2a2a2a] p-4">
+                                <h3 class="text-lg font-bold text-gray-300 mb-4 flex items-center">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                                     </svg>
                                     Status Atual
                                 </h3>
-                                <div class="space-y-3">
-                                    <div class="flex justify-between items-center">
-                                        <span class="text-gray-400">Nível de Ameaça:</span>
-                                        <div class="flex items-center">
-
-                                            <div class="h-2 w-32 bg-gray-700 rounded-full overflow-hidden">
+                                <div class="space-y-4 text-sm">
+                                    <div class="grid grid-cols-[1fr_auto] gap-x-4 gap-y-1 items-center">
+                                        <span class="text-gray-400">Nível de Ameaça</span>
+                                        <span class="{{ threat_levels.text_color }} font-bold text-right inline-flex items-center gap-1.5 justify-end">
+                                            <span class="scp-threat-{{ object.threat_level|lower }}" aria-hidden="true">●</span>
+                                            {{ threat_levels.label }}
+                                        </span>
+                                        <div class="col-span-2 h-2.5 w-full bg-[#2a2a2a] border border-[#3a3a3a] overflow-hidden">
                                             <div class="h-full {{ threat_levels.color }}" style="width: {{ threat_levels.width }}"></div>
-                                            </div>
-                                            <span class="ml-2 {{ threat_levels.text_color }} font-bold">{{ threat_levels.label }}</span>
-
                                         </div>
                                     </div>
-                                    <div class="flex justify-between items-center">
-                                        <span class="text-gray-400">Estado de Contenção:</span>
-                                        <span class="px-2 py-1 {{ containment_status.badge }} rounded-md text-sm">{{ containment_status.label|upper }}</span>
+                                    <div class="flex justify-between items-center gap-4">
+                                        <span class="text-gray-400">Estado de Contenção</span>
+                                        <span class="px-2 py-1 {{ containment_status.badge }} text-xs tracking-wide">{{ containment_status.label|upper }}</span>
                                     </div>
-                                    <div class="flex justify-between items-center">
-                                        <span class="text-gray-400">Local:</span>
-                                        <span class="text-gray-300">{% if object.local %}{{ object.local }}{% else %}Não informado{% endif %}</span>
+                                    <div class="flex justify-between items-center gap-4">
+                                        <span class="text-gray-400">Local</span>
+                                        <span class="text-gray-200 text-right">{% if object.local %}{{ object.local }}{% else %}Não informado{% endif %}</span>
                                     </div>
                                 </div>
                             </div>
                         </div>
 
                         <div class="lg:col-span-7 space-y-6">
-                            <div class="bg-gray-900 rounded-lg shadow-lg border border-gray-700">
-                                <div class="border-b border-gray-700 bg-gradient-to-r from-red-900 to-gray-900 p-3 rounded-t-lg">
-                                    <h2 class="text-xl font-bold text-white flex items-center">
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-2 text-red-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <div class="bg-[#0a0a0a] border border-[#2a2a2a]">
+                                <div class="border-b border-[#2a2a2a] bg-gradient-to-r from-red-900 to-[#0a0a0a] p-3">
+                                    <h2 class="text-lg md:text-xl font-bold text-white flex items-center">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 text-red-500 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
                                         </svg>
                                         Procedimentos Especiais de Contenção
                                     </h2>
                                 </div>
-                                <div class="p-5 prose prose-invert max-w-none">
-                                    <div class="text-gray-300 leading-relaxed font-light">
+                                <div class="p-5">
+                                    <div class="text-gray-300 leading-relaxed text-sm md:text-base">
                                         {{ object.special_containment_procedures|linebreaks }}
                                     </div>
                                 </div>
-                                <div class="bg-gray-900 bg-opacity-70 p-3 border-t border-gray-800 text-gray-400 text-sm flex items-center">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                <div class="p-3 border-t border-[#2a2a2a] text-gray-500 text-xs flex items-center">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                                     </svg>
                                     Aprovação de revisão: O5-7
                                 </div>
@@ -146,29 +131,29 @@
                         </div>
 
                         <div class="lg:col-span-12">
-                            <div class="bg-gray-900 rounded-lg shadow-lg border border-gray-700">
-                                <div class="border-b border-gray-700 bg-gradient-to-r from-blue-900 to-gray-900 p-3 rounded-t-lg">
-                                    <h2 class="text-xl font-bold text-white flex items-center">
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-2 text-blue-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <div class="bg-[#0a0a0a] border border-[#2a2a2a]">
+                                <div class="border-b border-[#2a2a2a] bg-gradient-to-r from-blue-900 to-[#0a0a0a] p-3">
+                                    <h2 class="text-lg md:text-xl font-bold text-white flex items-center">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 text-blue-400 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                                         </svg>
                                         Descrição
                                     </h2>
                                 </div>
-                                <div class="p-5 prose prose-invert max-w-none">
-                                    <div class="text-gray-300 leading-relaxed font-light">
+                                <div class="p-5 md:p-6">
+                                    <div class="text-gray-300 leading-relaxed text-sm md:text-base font-mono">
                                         {{ object.description|linebreaks }}
                                     </div>
                                 </div>
-                                <div class="bg-gray-900 bg-opacity-70 p-3 border-t border-gray-800 text-gray-400 text-sm">
-                                    <div class="flex flex-col sm:flex-row sm:justify-between">
-                                        <div class="mb-2 sm:mb-0">
-                                            <span class="text-gray-500">Data do documento:</span> 
-                                            <span>{{ object.created_at|date:'d/m/Y' }}</span>
+                                <div class="p-3 border-t border-[#2a2a2a] text-gray-500 text-xs">
+                                    <div class="flex flex-col sm:flex-row sm:justify-between gap-1">
+                                        <div>
+                                            <span class="text-gray-600">Data do documento:</span>
+                                            <span class="text-gray-400">{{ object.created_at|date:'d/m/Y' }}</span>
                                         </div>
                                         <div>
-                                            <span class="text-gray-500">Autoria:</span>
-                                            <span>{% if object.author %}{{ object.author.get_full_name|default:object.author.username }}{% else %}Dr. █████{% endif %}</span>
+                                            <span class="text-gray-600">Autoria:</span>
+                                            <span class="text-gray-400">{% if object.author %}{{ object.author.get_full_name|default:object.author.username }}{% else %}Dr. █████{% endif %}</span>
                                         </div>
                                     </div>
                                 </div>
@@ -177,17 +162,17 @@
                     </div>
 
                     {% if object.addendum %}
-                    <div class="mt-8 bg-gray-900 rounded-lg shadow-lg border border-gray-700 p-4">
+                    <div class="mt-8 bg-[#0a0a0a] border border-[#2a2a2a] p-4 md:p-5">
                         <h3 class="text-lg font-bold text-gray-300 mb-3 flex items-center">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z" />
                             </svg>
                             Adendo
                         </h3>
-                        <blockquote class="border-l-2 border-gray-600 pl-4 text-gray-400 italic">
+                        <blockquote class="border-l-2 border-gray-600 pl-4 text-gray-400 italic text-sm md:text-base">
                             {{ object.addendum|linebreaks }}
                             {% if object.author %}
-                            <footer class="text-right mt-2 text-sm">— {{ object.author.get_full_name|default:object.author.username }}</footer>
+                            <footer class="text-right mt-2 text-sm not-italic text-gray-500">— {{ object.author.get_full_name|default:object.author.username }}</footer>
                             {% endif %}
                         </blockquote>
                     </div>
@@ -195,46 +180,6 @@
                 </div>
             </div>
         </div>
-
-        <footer class="mt-12 border-t border-gray-800 py-6">
-            <div class="container mx-auto px-4 text-center">
-                <p class="text-sm text-gray-500">FUNDAÇÃO SCP • SEGURANÇA • CONTENÇÃO • PROTEÇÃO</p>
-                <p class="text-xs text-gray-600 mt-2">ACESSO RESTRITO • CLASSIFICAÇÃO NÍVEL-4</p>
-            </div>
-        </footer>
     </div>
-
-    <style>
-        .hide-scrollbar::-webkit-scrollbar {
-            display: none;
-        }
-        .hide-scrollbar {
-            -ms-overflow-style: none;
-            scrollbar-width: none;
-        }
-        
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-        
-        .prose-invert {
-            color: #D1D5DB;
-        }
-        
-        .prose-invert a {
-            color: #93C5FD;
-        }
-        
-        @keyframes blink {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0; }
-        }
-        
-        .animate-pulse {
-            animation: blink 1.2s infinite;
-            transform: scale(2.1);
-        }
-    </style>
 {% endblock content %}
 

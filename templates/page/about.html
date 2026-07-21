@@ -1,131 +1,138 @@
 {% extends "base/base.html" %}
 {% load static %}
 
-<title>{% block title %} The Glitching Void {% endblock title %}</title>
-
-<style>
-  body {
-    background-color: #000;
-    font-family: "Courier New", monospace;
-  }
-  .glitch {
-    position: relative;
-    color: #fff;
-    animation: glitch 2s infinite;
-  }
-  .glitch::before, .glitch::after {
-    content: attr(data-text);
-    position: absolute;
-    left: 0;
-    right: 0;
-    animation: glitch-lines 2s infinite;
-  }
-  .glitch::before {
-    top: -2px;
-    color: #f00;
-    clip: rect(24px, 550px, 90px, 0);
-    animation-duration: 3s;
-  }
-  .glitch::after {
-    top: 2px;
-    color: #0f0;
-    clip: rect(85px, 550px, 140px, 0);
-    animation-duration: 1.5s;
-  }
-  .blink {
-    animation: blink 1s infinite;
-  }
-  .background-glitch {
-    animation: background-glitch 3s infinite;
-  }
-  @keyframes glitch {
-    0% { transform: translate(0); }
-    20% { transform: translate(-5px, 5px); }
-    40% { transform: translate(-5px, -5px); }
-    60% { transform: translate(5px, 5px); }
-    80% { transform: translate(5px, -5px); }
-    100% { transform: translate(0); }
-  }
-  @keyframes glitch-lines {
-    0% { transform: translateY(0); }
-    20% { transform: translateY(-2px); }
-    40% { transform: translateY(2px); }
-    60% { transform: translateY(-1px); }
-    80% { transform: translateY(1px); }
-    100% { transform: translateY(0); }
-  }
-  @keyframes blink {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0; }
-  }
-  @keyframes background-glitch {
-    0% { background-color: #000; }
-    50% { background-color: #111; }
-    100% { background-color: #000; }
-  }
-</style>
+{% block title %}Sobre{% endblock title %}
 
 {% block content %}
-<div class="background-glitch">
-  <div class="container mx-auto px-4 py-8">
-    <div class="flex items-center justify-center mb-8">
-      <img src="{% static 'blog/img/scplogo-removebg-preview.png' %}" alt="SCP Logo" class="w-32 h-32 rounded-full shadow-lg object-cover glitch" data-text="SCP Logo">
-      <h1 class="text-4xl font-bold ml-4 glitch" data-text="About SCP Foundation">About SCP Foundation</h1>
-    </div>
-    
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-      <div class="md:col-span-1">
-        <p class="text-lg leading-relaxed blink">Welcome to the SCP Foundation, a secretive organization dedicated to securing, containing, and protecting anomalous objects, entities, and phenomena.</p>
-        <p class="mt-4 text-lg leading-relaxed">Our mission is to maintain normalcy within the world by studying and suppressing supernatural and paranormal threats.</p>
-      </div>
-      
-      <div class="md:col-span-1">
-        <img src="{% static 'blog/img/scp-image-default.jpg' %}" alt="SCP Facility" class="rounded-lg shadow-lg glitch" data-text="SCP Facility">
-      </div>
-    </div>
-    
-    <div class="mt-8 text-lg leading-relaxed">
-      <p>Explore our vast archives and discover the mysteries of the SCP universe, where every object has a story to tell and every entity poses a potential danger.</p>
-      <p class="mt-4 blink">Join us in our mission to protect humanity from the unknown and ensure the safety of the world we live in.</p>
-    </div>
-  </div>
-</div>
 
-<script>
-  // Enhance the glitch effect for images
-  setInterval(function() {
-    document.querySelectorAll('.glitch, .logo').forEach(function(element) {
-      element.style.filter = 'grayscale(' + Math.random() * 100 + '%)';
-      element.style.transform = 'scale(' + (Math.random() * 2) + ')';
-    });
-  }, 100);
+<section class="border-b border-[#2a2a2a] bg-[#111]">
+    <div class="container mx-auto px-4 py-10 md:py-14">
+        <div class="flex flex-col md:flex-row md:items-center gap-6 md:gap-10">
+            <img src="{% static 'blog/img/scplogo-removebg-preview.png' %}" alt="Fundação SCP"
+                 class="h-24 w-auto opacity-90 self-start md:self-center">
+            <div>
+                <p class="text-[10px] tracking-[0.35em] text-red-700 uppercase mb-2">Documento classificado</p>
+                <h1 class="text-2xl md:text-4xl font-bold text-gray-100 tracking-tight mb-4">
+                    Sobre a Fundação
+                </h1>
+                <blockquote class="border-l-2 border-red-900 pl-4 text-sm md:text-base text-gray-400 leading-relaxed max-w-2xl">
+                    <p class="mb-3">
+                        A Humanidade não deve voltar a se esconder com medo. Ninguém vai nos proteger,
+                        devemos lutar por nós mesmos. Enquanto o resto da humanidade vive sob a luz,
+                        devemos viver na escuridão para combatê-la, mantê-la e protegê-la de olhos públicos.
+                    </p>
+                    <p class="text-red-500 font-bold tracking-wide uppercase text-xs md:text-sm">
+                        Nós asseguramos. Nós contemos. Nós protegemos.
+                    </p>
+                    <footer class="mt-3 text-[11px] text-gray-600 tracking-wider uppercase">— O5-0 Administrador</footer>
+                </blockquote>
+            </div>
+        </div>
+    </div>
+</section>
 
-  // Randomize blink effect
-  setInterval(function() {
-    document.querySelectorAll('.blink').forEach(function(element) {
-      element.style.animationDuration = (Math.random() * 2) + 's';
-    });
-  }, 1000);
+<section class="container mx-auto px-4 py-10">
+    <p class="text-[10px] tracking-[0.35em] text-red-700 uppercase mb-2">Diretriz operacional</p>
+    <h2 class="text-xl md:text-2xl font-bold text-gray-100 mb-2">Nossa Missão</h2>
+    <p class="text-sm text-gray-500 max-w-3xl mb-8 leading-relaxed">
+        Operando clandestinamente e mundialmente, a Fundação contém objetos, entidades e fenômenos anômalos
+        que ameaçam a segurança global — para que a população civil viva sem medo, desconfiança ou dúvida.
+    </p>
 
-  // Cursor trail effect
-  document.body.style.cursor = 'none';
-  document.addEventListener('mousemove', function(event) {
-    var cursor = document.createElement('div');
-    cursor.style.position = 'absolute';
-    cursor.style.top = event.clientY + 'px';
-    cursor.style.left = event.clientX + 'px';
-    cursor.style.width = '10px';
-    cursor.style.height = '10px';
-    cursor.style.background = 'red';
-    cursor.style.borderRadius = '50%';
-    cursor.style.transition = 'transform 0.2s ease';
-    document.body.appendChild(cursor);
-    setTimeout(function() {
-      cursor.style.transform = 'scale(3)';
-    }, 0);
-    setTimeout(function() {
-      cursor.remove();
-    }, 300);
-  });
-</script>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <article class="bg-[#111] border border-[#2a2a2a] p-5 border-t-2 border-t-red-800">
+            <h3 class="text-red-500 font-bold tracking-[0.2em] uppercase text-sm mb-3">Assegurar</h3>
+            <p class="text-sm text-gray-400 leading-relaxed">
+                Impedir que anomalias caiam em mãos civis ou de agências rivais, por vigilância extensiva
+                e interceptação na primeira oportunidade.
+            </p>
+        </article>
+        <article class="bg-[#111] border border-[#2a2a2a] p-5 border-t-2 border-t-red-800">
+            <h3 class="text-red-500 font-bold tracking-[0.2em] uppercase text-sm mb-3">Conter</h3>
+            <p class="text-sm text-gray-400 leading-relaxed">
+                Prevenir a disseminação de influências anômalas — realocando, ocultando, desarmando
+                ou bloqueando o conhecimento público das mesmas.
+            </p>
+        </article>
+        <article class="bg-[#111] border border-[#2a2a2a] p-5 border-t-2 border-t-red-800">
+            <h3 class="text-red-500 font-bold tracking-[0.2em] uppercase text-sm mb-3">Proteger</h3>
+            <p class="text-sm text-gray-400 leading-relaxed">
+                Proteger a humanidade dos efeitos anômalos e as próprias anomalias até sua compreensão.
+                Neutralização é recurso de último extremo.
+            </p>
+        </article>
+    </div>
+</section>
+
+<section class="border-y border-[#2a2a2a] bg-[#111]">
+    <div class="container mx-auto px-4 py-10">
+        <p class="text-[10px] tracking-[0.35em] text-red-700 uppercase mb-2">Arquivo primário</p>
+        <h2 class="text-xl md:text-2xl font-bold text-gray-100 mb-3">SCPs — Procedimentos Especiais de Contenção</h2>
+        <p class="text-sm text-gray-400 max-w-3xl leading-relaxed mb-4">
+            A Fundação mantém uma base de dados de anomalias que exigem Procedimentos Especiais de Contenção
+            (Special Containment Procedures — SCPs). Cada registro resume a anomalia e os protocolos de emergência
+            para manter ou restabelecer contenção segura.
+        </p>
+        <p class="text-sm text-gray-500 max-w-3xl leading-relaxed">
+            Anomalias podem ser objetos, entidades, locais ou fenômenos. São classificadas por Classe de Objeto
+            e contidas em Instalações Seguras — ou in situ, quando a realocação for inviável.
+        </p>
+    </div>
+</section>
+
+<section class="container mx-auto px-4 py-10">
+    <p class="text-[10px] tracking-[0.35em] text-red-700 uppercase mb-2">Referência rápida</p>
+    <h2 class="text-xl md:text-2xl font-bold text-gray-100 mb-6">Classificações</h2>
+
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-4">
+
+        <details class="bg-[#111] border border-[#2a2a2a] group open:border-red-900/60" open>
+            <summary class="cursor-pointer list-none px-4 py-3 flex items-center justify-between border-b border-[#2a2a2a] text-sm font-bold text-gray-200 uppercase tracking-wider">
+                Classes de Objeto
+                <span class="text-gray-600 text-xs group-open:rotate-180 transition">▼</span>
+            </summary>
+            <ul class="p-4 space-y-2.5 text-sm">
+                <li class="flex gap-2"><span class="scp-class-safe px-1.5 py-0.5 border text-[10px] shrink-0 self-start">Seguro</span><span class="text-gray-500">Contenção rotineira; falha não causa catástrofe imediata.</span></li>
+                <li class="flex gap-2"><span class="scp-class-euclid px-1.5 py-0.5 border text-[10px] shrink-0 self-start">Euclídeo</span><span class="text-gray-500">Imprevisível ou insuficientemente compreendido; requer mais recursos.</span></li>
+                <li class="flex gap-2"><span class="scp-class-keter px-1.5 py-0.5 border text-[10px] shrink-0 self-start">Keter</span><span class="text-gray-500">Extremamente difícil de conter; alto risco de brecha.</span></li>
+                <li class="flex gap-2"><span class="scp-class-thaumiel px-1.5 py-0.5 border text-[10px] shrink-0 self-start">Thaumiel</span><span class="text-gray-500">Usado pela Fundação para conter ou combater outras anomalias.</span></li>
+                <li class="flex gap-2"><span class="scp-class-neutralized px-1.5 py-0.5 border text-[10px] shrink-0 self-start">Neutralizado</span><span class="text-gray-500">Não é mais anômalo — destruído, explicado ou inativo.</span></li>
+                <li class="flex gap-2"><span class="scp-class-apollyon px-1.5 py-0.5 border text-[10px] shrink-0 self-start">Apollyon</span><span class="text-gray-500">Incontível; ameaça iminente e incontrolável.</span></li>
+                <li class="flex gap-2"><span class="scp-class-archon px-1.5 py-0.5 border text-[10px] shrink-0 self-start">Archon</span><span class="text-gray-500">Teoricamente contível, mas a contenção é deliberadamente evitada.</span></li>
+            </ul>
+        </details>
+
+        <details class="bg-[#111] border border-[#2a2a2a] group open:border-red-900/60" open>
+            <summary class="cursor-pointer list-none px-4 py-3 flex items-center justify-between border-b border-[#2a2a2a] text-sm font-bold text-gray-200 uppercase tracking-wider">
+                Níveis de Ameaça
+                <span class="text-gray-600 text-xs group-open:rotate-180 transition">▼</span>
+            </summary>
+            <ul class="p-4 space-y-2.5 text-sm text-gray-500">
+                <li><span class="scp-threat-white mr-2" aria-hidden="true">●</span>Branco — risco mínimo</li>
+                <li><span class="scp-threat-yellow mr-2" aria-hidden="true">●</span>Amarelo — atenção elevada</li>
+                <li><span class="scp-threat-orange mr-2" aria-hidden="true">●</span>Laranja — perigo moderado</li>
+                <li><span class="scp-threat-red mr-2" aria-hidden="true">●</span>Vermelho — ameaça grave</li>
+                <li><span class="scp-threat-purple mr-2" aria-hidden="true">●</span>Roxo — catástrofe potencial</li>
+                <li><span class="scp-threat-black mr-2" aria-hidden="true">●</span>Preto — risco existencial</li>
+            </ul>
+        </details>
+
+        <details class="bg-[#111] border border-[#2a2a2a] group open:border-red-900/60" open>
+            <summary class="cursor-pointer list-none px-4 py-3 flex items-center justify-between border-b border-[#2a2a2a] text-sm font-bold text-gray-200 uppercase tracking-wider">
+                Níveis de Credencial
+                <span class="text-gray-600 text-xs group-open:rotate-180 transition">▼</span>
+            </summary>
+            <ul class="p-4 space-y-2.5 text-sm text-gray-500 font-mono">
+                <li><span class="text-gray-300">0</span> — Sem credencial / acesso público mínimo</li>
+                <li><span class="text-gray-300">1</span> — Confidencial — dados gerais de contenção</li>
+                <li><span class="text-gray-300">2</span> — Restrito — arquivos SCP padrão</li>
+                <li><span class="text-gray-300">3</span> — Secreto — anomalias sensíveis</li>
+                <li><span class="text-gray-300">4</span> — Altamente secreto — projetos críticos</li>
+                <li><span class="text-gray-300">5</span> — Thaumiel / Conselho O5</li>
+            </ul>
+        </details>
+
+    </div>
+</section>
+
 {% endblock content %}

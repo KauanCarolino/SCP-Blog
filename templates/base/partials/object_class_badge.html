@@ -1,0 +1,11 @@
+{% comment %}
+  Expects: publication (object_class + get_object_class_display).
+  Optional: size — "sm" (default) or "lg".
+{% endcomment %}
+{% if size == "lg" %}
+    <div class="border-2 px-3 py-1 self-start sm:self-auto {% include 'base/partials/object_class_css.html' with object_class=publication.object_class %}">
+        <p class="font-bold text-sm md:text-lg">Classe: {{ publication.get_object_class_display }}</p>
+    </div>
+{% else %}
+    <span class="px-1.5 py-0.5 border {% include 'base/partials/object_class_css.html' with object_class=publication.object_class %}">{{ publication.get_object_class_display }}</span>
+{% endif %}
